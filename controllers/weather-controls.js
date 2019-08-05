@@ -5,12 +5,9 @@ const secret = process.env.KEY,
 const weatherNow = async (req, res) => {
   const loc = req.body.location || 'San%20Francisco';
   const url = baseUrl + `?q=${loc}` + `&APPID=${secret}`
-  try {
-    const res = await axios.get(url)
-    console.log(res.data)
-  } catch (err) {
-    console.log(err)
-  }
+  const response = await axios.get(url)
+
+  res.send(response.body)
 };
 
 module.exports = { weatherNow }
